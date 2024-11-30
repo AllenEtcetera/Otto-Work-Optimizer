@@ -1,9 +1,40 @@
-
 import tkinter as tk
 from tkinter import Menu,filedialog,messagebox,simpledialog
 
+#################### Encrypt/Decrypt stuff ####################
+def encrypt(text,shift):
+    result = ""
+    # traverse text
+    for i in range(len(text)):
+        char = text[i]
+        # Encrypt uppercase characters
+        if char.isupper():
+            result += chr((ord(char) + shift - 65) % 26 + 65)
+        # Encrypt lowercase characters
+        elif char.islower():
+            result += chr((ord(char) + shift - 97) % 26 + 97)
+        else:
+            result += char
+    return result
+
+def decrypt(text,shift):
+    result = ""
+    # traverse text
+    for i in range(len(text)):
+        char = text[i]
+        # Decrypt uppercase characters
+        if char.isupper():
+            result += chr((ord(char) - shift - 65) % 26 + 65)
+        # Decrypt lowercase characters
+        elif char.islower():
+            result += chr((ord(char) - shift - 97) % 26 + 97)
+        else:
+            result += char
+    return result
 #################### File save functions ####################
-def save_data(file_path, text):
+def save_data(file_path,text,encrypt_data=False,shift=3):
+    if encrypt_data:
+        text = encrypt(text,shift)
     with open(file_path, 'w') as file:
         file.write(text)
     print(f"File saved: {file_path}")
@@ -13,13 +44,15 @@ def saveas_file():
     global file_path
     file_path = filedialog.asksaveasfilename(title="Save As", defaultextension=".txt", filetypes=[("Text files", "*.txt"), ("All files", "*.*")])
     if file_path:
-        save_data(file_path, text.get("1.0",tk.END))
+        encrypt_data = messagebox.askyesno("Encrypt","Encrypt this file while saving?")
+        save_data(file_path, text.get("1.0",tk.END), encrypt_data)
     else:
         print("No file selected")
 # Save current
 def save_file():
     if file_path:
-        save_data(file_path, text.get("1.0",tk.END))
+        encrypt_data = messagebox.askyesno("Encrypt","Encrypt this file while saving?")
+        save_data(file_path, text.get("1.0",tk.END), encrypt_data)
     else:
         saveas_file()
 #################### File open function ####################
@@ -33,8 +66,11 @@ def open_file():
     if file_path:
         with open(file_path, 'r', encoding='utf-8') as file:
             content = file.read()
-            text.delete("1.0",tk.END)
-            text.insert(tk.END,content)
+        decrypt_data = messagebox.askyesno("Decrypt","Decrypt data on file?")
+        if decrypt_data:
+            content = decrypt(content,3)
+        text.delete("1.0",tk.END)
+        text.insert(tk.END,content)
         print(f"File opened: {file_path}")
     else:
         print("No file selected")
