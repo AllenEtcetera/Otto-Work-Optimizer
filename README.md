@@ -34,4 +34,8 @@ When sorting, you can overwrite or create a new file. Sorting can also occur by 
 ## OttoHour
 OttoHour notifies the user of an hour passing. This is baked into the Hub and doesn't use a separate window.
 
+<<<<<<< HEAD
 # *This program was made by Allen Rutledge using Python 3. It's open-source.*
+=======
+# *This program was made by Allen Rutledge using Python 3. It's open-source.*
+>>>>>>> 986117e (Added Encryption to OttoNotes, linked README.)
