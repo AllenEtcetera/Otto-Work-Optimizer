@@ -1,10 +1,9 @@
 # -*- mode: python ; coding: utf-8 -*-
-
 a = Analysis(
-    ['OttoHub.py','OttoInput.py','OttoList.py','OttoMath.py','OttoNote.py','OttoOverwrite.py','OttoRemind.py','OttoSort.py'],
-    pathex=[''],
+    ['./scripts/OttoHub.py','./scripts/OttoInput.py','./scripts/OttoList.py','./scripts/OttoMath.py','./scripts/OttoNote.py','./scripts/OttoOverwrite.py','./scripts/OttoRemind.py','./scripts/OttoSort.py'],
+    pathex=['./scripts'],
     binaries=[],
-    datas=['hourpass.mp3'],
+    datas=[('hourpass.mp3','.')],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
@@ -17,20 +16,19 @@ a = Analysis(
     optimize=0
 )
 pyz = PYZ(a.pure, a.zipped_data, cipher=None)
-
 exe = EXE(
     pyz,
-    a.scripts,
+    [a.scripts[0]], #Only first entry in list of scripts
     [],
     exclude_binaries=True,
-    name='OttoHub.py',
+    name='OttoHub',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
     upx=True,
     upx_exclude=[],
     runtime_tmpdir=None,
-    console=True
+    console=False
 )
 coll = COLLECT(
     exe,
