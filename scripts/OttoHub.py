@@ -27,7 +27,6 @@ def about_otto():
         "This program was made by Allen Rutledge using Python 3. It's free to use."
         )
     messagebox.showinfo("About Otto",about_text)
-
 def toggle_hourpass():
     global notif_on
     notif_on = not notif_on
@@ -52,27 +51,26 @@ def create_window():
     notif_on = False
     rootHub = tk.Tk()
     rootHub.title("Otto Work Optimizer")
-
     # Otto Input button
-    input_button = tk.Button(rootHub, text="Input", command=lambda:subprocess.Popen(['python', 'OttoInput.py']))
+    input_button = tk.Button(rootHub, text="Input", command=lambda:subprocess.Popen(['python', './scripts/OttoInput.py']))
     input_button.grid(row=0,column=0,pady=5,padx=5)
     # Otto List button
-    input_button = tk.Button(rootHub, text="List", command=lambda:subprocess.Popen(['python', 'OttoList.py']))
+    input_button = tk.Button(rootHub, text="List", command=lambda:subprocess.Popen(['python', './scripts/OttoList.py']))
     input_button.grid(row=0,column=1,pady=5,padx=5)
     # Otto Math button
-    input_button = tk.Button(rootHub, text="Math", command=lambda:subprocess.Popen(['python', 'OttoMath.py']))
+    input_button = tk.Button(rootHub, text="Math", command=lambda:subprocess.Popen(['python', './scripts/OttoMath.py']))
     input_button.grid(row=0,column=2,pady=5,padx=5)
     # Otto Note button
-    input_button = tk.Button(rootHub, text="Notes", command=lambda:subprocess.Popen(['python', 'OttoNote.py']))
+    input_button = tk.Button(rootHub, text="Notes", command=lambda:subprocess.Popen(['python', './scripts/OttoNote.py']))
     input_button.grid(row=1,column=0,pady=5,padx=5)
     # Otto Overwrite button
-    input_button = tk.Button(rootHub, text="Overwrite", command=lambda:subprocess.Popen(['python', 'OttoOverwrite.py']))
+    input_button = tk.Button(rootHub, text="Overwrite", command=lambda:subprocess.Popen(['python', './scripts/OttoOverwrite.py']))
     input_button.grid(row=1,column=1,pady=5,padx=5)
     # Otto Remind button
-    input_button = tk.Button(rootHub, text="Remind", command=lambda:subprocess.Popen(['python', 'OttoRemind.py']))
+    input_button = tk.Button(rootHub, text="Remind", command=lambda:subprocess.Popen(['python', './scripts/OttoRemind.py']))
     input_button.grid(row=1,column=2,pady=5,padx=5)
     # Otto Sort button
-    input_button = tk.Button(rootHub, text="Sort", command=lambda:subprocess.Popen(['python', 'OttoSort.py']))
+    input_button = tk.Button(rootHub, text="Sort", command=lambda:subprocess.Popen(['python', './scripts/OttoSort.py']))
     input_button.grid(row=2,column=1,pady=5,padx=5)
     # Hour pass button
     toggle_button = tk.Button(rootHub,text="OttoHour OFF",command=toggle_hourpass)
@@ -80,8 +78,6 @@ def create_window():
     # About button
     input_button = tk.Button(rootHub, text="About", command=about_otto)
     input_button.grid(row=3,column=1,pady=10,padx=10)
-
     # Main loop
     rootHub.mainloop()
-
 create_window()
