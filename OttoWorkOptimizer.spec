@@ -1,4 +1,6 @@
 # -*- mode: python ; coding: utf-8 -*-
+
+
 a = Analysis(
     ['./scripts/OttoHub.py','./scripts/OttoInput.py','./scripts/OttoList.py','./scripts/OttoMath.py','./scripts/OttoNote.py','./scripts/OttoOverwrite.py','./scripts/OttoRemind.py','./scripts/OttoSort.py'],
     pathex=['./scripts'],
@@ -15,20 +17,27 @@ a = Analysis(
     noarchive=False,
     optimize=0
 )
-pyz = PYZ(a.pure, a.zipped_data, cipher=None)
+pyz = PYZ(a.pure)
+
 exe = EXE(
     pyz,
     [a.scripts[0]], #Only first entry in list of scripts
+    a.binaries,
+    a.datas,
     [],
-    exclude_binaries=True,
-    name='OttoHub',
+    name='OttoWorkOptimizer',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
-    upx=True,
+    upx=False,
     upx_exclude=[],
     runtime_tmpdir=None,
-    console=False
+    console=False,
+    disable_windowed_traceback=False,
+    argv_emulation=False,
+    target_arch=None,
+    codesign_identity=None,
+    entitlements_file=None,
 )
 coll = COLLECT(
     exe,
@@ -36,7 +45,7 @@ coll = COLLECT(
     a.zipfiles,
     a.datas,
     strip=False,
-    upx=True,
+    upx=False,
     upx_exclude=[],
     name='Otto Work Optimizer'
 )
