@@ -39,13 +39,7 @@ def toggle_hourpass():
             while notif_on:
                 time.sleep(3600) #3600 is 1 hour
                 if notif_on:
-                    
-                    str(BASE_DIR / 'scripts' / 'hourpass.wav')
-                    notification.notify(
-                        title='Otto Hour',
-                        message='An hour has passed.',
-                        timeout=10  # seconds
-                    )
+                    messagebox.showinfo("OttoHour","An hour has passed!")
         threading.Thread(target=notify,daemon=True).start()
 
 # Base directory of the executable or script
